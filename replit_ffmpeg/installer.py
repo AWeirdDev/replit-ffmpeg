@@ -33,15 +33,9 @@ def main():
     
     with_ytdl: bool = _plain_ans_with_ytdl.lower() in ["y", "yes"]
     
-    r = None
-    
     headers={
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 OPR/100.0.0.0 (Edition GX-CN)"
     }
-    
-    def download_ffmpeg():
-        global r
-        r = requests.get("https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz", headers=headers)
     
     console.print(
         "[blue]install[/blue] ffmpeg static "
@@ -52,9 +46,9 @@ def main():
     
     for _ in range(2):
         try:
-            download_ffmpeg()
+            r = requests.get("https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz", headers=headers)
             break
-        except requests.exceptions.SSLError:
+        except (requests.exceptions.SSLError, requests.exceptions.ConnectionError):
             console.print(
                 "[d red]error  [/d red][d] SSL error: retrying[/d]"
             )
@@ -113,31 +107,36 @@ def main():
     console.print(
         "[blue]moving [/blue] 'libopus.so', 'libopus.so.0', and many other."
     )
+    os.system("mv ffmpeg venv/bin")
+    os.system("mv ffprobe venv/bin")
+    console.print(
+        "[blue]moving [/blue] 'ffmpeg' and 'ffprobe' to venv/bin."
+    )
     
     console.print()
     
     console.print(Markdown(
         """
-    # It's DONE!
-    Congratulations! We've installed ffmpeg and opus for your REPL!
-    
-    In constrast, I've:
-    
-    - Installed `ffmpeg` and `ffprobe` in this directory
-    - Installed `opus`
-    - Created a dir named `opus` that contains `libopus.so` files
-    
-    ...that's pretty much it!
-    
-    If you're making a Discord bot, whether it's `py-cord` or `discord.py`, use:
-    
-    ```python
-    import discord
-    
-    discord.opus.load_opus("opus/libopus.so")
-    ```
-    
-    That's it, and have fun hacking! <3
+# It's DONE!
+Congratulations! We've installed ffmpeg and opus for your REPL!
+
+In contrast, I've:
+
+- Installed `ffmpeg` and `ffprobe` in this directory
+- Installed `opus`
+- Created a dir named `opus` that contains `libopus.so` files
+
+...that's pretty much it!
+
+If you're making a Discord bot, whether it's `py-cord` or `discord.py`, use:
+
+```python
+import discord
+
+discord.opus.load_opus("opus/libopus.so")
+```
+
+That's it, and have fun hacking! <3
         """,
         "one-dark"
     ))
