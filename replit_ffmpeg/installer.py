@@ -46,7 +46,8 @@ def main():
                         "  [red]Invalid library name. Please try again.[/red]",
                     )
             except KeyboardInterrupt:
-                console.print("\n  [red]Aborted by user.[/red]")
+                console.print()
+                console.print("  [red]Aborted by user.[/red]")
                 sys.exit(1)
             finally:
                 console.print("")
@@ -201,5 +202,6 @@ That's it, and have fun hacking! <3
 
     rmdir("opus-1.3.1")
     rmdir("ffmpeg-6.0.1-amd64-static")
-
+    
+    console.print()
     console.print("[blue]all done![/blue]")
