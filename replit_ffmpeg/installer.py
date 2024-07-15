@@ -42,9 +42,9 @@ def main():
                 if ytdl_lib in {"yt-dlp", "youtube-dl"}:
                     break
                 else:
-                    console.print("[red]Invalid library name. Please try again.[/red]")
+                    console.print("  [red]Invalid library name. Please try again.[/red]")
             except KeyboardInterrupt:
-                console.print("\n[red]Aborted by user.[/red]")
+                console.print("\n  [red]Aborted by user.[/red]")
                 sys.exit(1)
             finally:
                 console.print("")
