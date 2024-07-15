@@ -65,8 +65,8 @@ def main():
     console.print(
         "[blue]moving [/blue] ffmpeg, ffprobe"
     )
-    os.system('mv ffmpeg-6.0-amd64-static/ffmpeg ffmpeg')
-    os.system('mv ffmpeg-6.0-amd64-static/ffprobe ffprobe')
+    os.system('mv ffmpeg-7.0.1-amd64-static/ffmpeg ffmpeg')
+    os.system('mv ffmpeg-7.0.1-amd64-static/ffprobe ffprobe')
     
     console.print("[red]remove [/red] ffmpeg.tar.xz")
     os.remove('ffmpeg.tar.xz')
@@ -183,7 +183,7 @@ That's it, and have fun hacking! <3
         os.rmdir(folder)
     
     rmdir('opus-1.3.1')
-    rmdir('ffmpeg-6.0-amd64-static')
+    rmdir('ffmpeg-7.0.1-amd64-static')
     
     console.print("[blue]all done![/blue]")
     
