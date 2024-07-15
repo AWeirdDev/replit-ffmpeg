@@ -42,7 +42,9 @@ def main():
                 if ytdl_lib in {"yt-dlp", "youtube-dl"}:
                     break
                 else:
-                    console.print("  [red]Invalid library name. Please try again.[/red]")
+                    console.print(
+                        "  [red]Invalid library name. Please try again.[/red]",
+                    )
             except KeyboardInterrupt:
                 console.print("\n  [red]Aborted by user.[/red]")
                 sys.exit(1)
@@ -94,7 +96,7 @@ def main():
     for _ in range(2):
         try:
             opus_r = requests.get(
-                "https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-6.0.1-amd64-static.tar.xz",
+                "https://archive.mozilla.org/pub/opus/opus-1.3.1.tar.gz",
                 headers=headers,
                 timeout=20,
             )
@@ -138,7 +140,7 @@ def main():
         if ytdl_lib == "yt-dlp":
             console.print(
                 "[d blue]extra  [/d blue][d] installed yt-dlp. "
-                "Use `import yt_dlp` instead of `import youtube_dl`. [/d]"
+                "Use `import yt_dlp` instead of `import youtube_dl`. [/d]",
             )
         else:
             console.print(
