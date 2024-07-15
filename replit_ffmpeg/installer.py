@@ -15,7 +15,7 @@ def main():
 
     console.print()
     console.print(
-        "  I will install [blue]ffmpeg, opus and youtube dl (opt)[/blue] for you.",
+        "  I will install [blue]ffmpeg, opus, and youtube-dl (opt)[/blue] for you.",
     )
     console.print("  Make sure this REPL is clear so that nothing will be overwritten.")
     console.print()
@@ -37,7 +37,7 @@ def main():
         while True:
             try:
                 ytdl_lib = console.input(
-                    "Which library would you like to install (yt-dlp or youtube-dl)? ",
+                    "  [green]?[/green] Which libaray would you like to install? [blue](youtube-dl or yt-dlp)[/blue] ",
                 )
                 if ytdl_lib in {"yt-dlp", "youtube-dl"}:
                     break
@@ -46,6 +46,8 @@ def main():
             except KeyboardInterrupt:
                 console.print("\n[red]Aborted by user.[/red]")
                 sys.exit(1)
+            finally:
+                console.print("")
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 OPR/100.0.0.0 (Edition GX-CN)",
@@ -79,8 +81,8 @@ def main():
     os.system("tar -xf ffmpeg.tar.xz")
 
     console.print("[blue]moving [/blue] ffmpeg, ffprobe")
-    os.system("mv ffmpeg-7.0.1-amd64-static/ffmpeg ffmpeg")
-    os.system("mv ffmpeg-7.0.1-amd64-static/ffprobe ffprobe")
+    os.system("mv ffmpeg-6.0.1-amd64-static/ffmpeg ffmpeg")
+    os.system("mv ffmpeg-6.0.1-amd64-static/ffprobe ffprobe")
 
     console.print("[red]remove [/red] ffmpeg.tar.xz")
     os.remove("ffmpeg.tar.xz")
@@ -135,14 +137,12 @@ def main():
         os.system(f"pip install {ytdl_lib} --quiet")
         if ytdl_lib == "yt-dlp":
             console.print(
-                f"[d blue]extra  [/d blue][d] installed {ytdl_lib}. ",
-            )
-            console.print(
-                "Use `import yt_dlp` instead of `import youtube_dl`.[/d]",
+                "[d blue]extra  [/d blue][d] installed yt-dlp. "
+                "Use `import yt_dlp` instead of `import youtube_dl`. [/d]"
             )
         else:
             console.print(
-                f"[d blue]extra  [/d blue][d] installed {ytdl_lib}. ",
+                f"[d blue]extra  [/d blue][d] installed {ytdl_lib}. [/d]",
             )
         console.print()
 
